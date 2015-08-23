@@ -15,8 +15,10 @@ to = ([ input1, input2 ], output, description) -->
 
 [ 'abc' 'def' ] `to` 0 <| "total mismatch"
 
+[ 'abc' 'cba' ] `to` (1/3) <| "wrong order" # ignores stuff out of order
+
 [ 'abc' 'abc' ]  `to` 1 <| "exact match"
-[ 'abc' 'abc_' ] `to` 1 <| "all matched, with 1 trailing (no problem)"
+[ 'abc' 'abc_' ] `to` 1 <| "all matched, with 1 trailing"
 [ 'abc' '_abc' ] `to` 1 <| "all matched, with 1 leading"
 [ 'abc' 'a_bc' ] `to` 1 <| "all matched, with 1 between"
 
@@ -26,3 +28,7 @@ to = ([ input1, input2 ], output, description) -->
 
 [ 'abc' 'ac' ]  `to` (2/3) <| "2 matched with 1 missing between"
 [ 'abc' 'a_c' ] `to` (2/3) <| "2 matched with wrong between"
+
+[ 'abc' 'cabc' ] `to` 1 <| "fully matched, with duplicate leading"
+[ 'abbc' 'acbbac' ] `to` 1 <| "fully matched with duplicate, with duplicate input char earlier"
+[ 'abc' 'cacb' ] `to` (2/3) <| "incomplete match with duplicates"

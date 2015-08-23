@@ -1,26 +1,62 @@
-module.exports = scatter-match = (characters, input) -->
+# Return the first element of an array to satisfy a predicate
+find = (array, predicate) ->
+  for x, i in array
+    if predicate x, i then return x
+  return null
 
-  # Empty search string will always fully match
-  if characters.length is 0 then return 1
+# Assumes to get an array of arrays, with each inner array sorted ascending
+longest-ascending-sequence = (array-of-arrays) ->
 
-  # Empty search target will never fully match
-  if input.length is 0 then return 0
+  { max } = array-of-arrays.reduce do
+    (previous, next) ->
 
-  characters .= split ""
-  input      .= split ""
+      # If this array has nothing to contribute (it's empty), just pass on the
+      # current result
+      if next.length is 0 then return previous
 
-  n-wanted    = characters.length
-  n-matching  = 0
+      # If the current state indicates we haven't found anything yet, then OK,
+      # we've found at least this one now.
+      if previous.got-to-number is null
+        return max : 1, got-to-number : next.0
 
-  input.for-each (i) ->
+      # Otherwise we'll check if we've got a number larger than where we've
+      # gotten to now, and return that with incremented max steps if so.
+      minimum-exceeding = find next, (> previous.got-to-number)
+      if minimum-exceeding?
+        return max : (previous.max + 1), got-to-number : minimum-exceeding
 
-    if characters.length
+      # Otherwise we didn't have any number that could continue the ascending
+      # sequence, so just pass on the current result.
+      return previous
 
-      for c, index in characters
+    { # initial state
+      max : 0              # the current length of the ascending sequence
+      got-to-number : null # the highest number in the ascending sequence
+    }
 
-        if i is c
-          ++n-matching
-          characters := characters.slice (index + 1), characters.length
-          break
+  return max
 
-  return n-matching / n-wanted
+module.exports = scatter-match = (wishes, input) -->
+
+  if wishes.length is 0 then return 1 # Empty wish matches anything
+  if input.length  is 0 then return 0 # Empty input matches nothing
+
+  wishes .= split ""
+  input  .= split ""
+
+  at-indices = []
+  for _ til wishes.length then at-indices.push []
+
+  input.for-each (input-char, input-index) ->
+
+    for wish-char, wish-index in wishes
+
+      if input-char is wish-char
+
+        # Record that this wish char was found here
+        at-indices[wish-index].push input-index
+
+  if at-indices.every (.length is 0) then return 0 # nothing matched
+
+  sequence-length = longest-ascending-sequence at-indices
+  return sequence-length / wishes.length
