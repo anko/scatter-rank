@@ -1,5 +1,5 @@
 {
-  "name": "scatter-match",
+  "name": "scatter-rank",
   "version": "1.0.0",
   "description": "match stuff where with these characters are in the same order",
   "main": "index.js",
