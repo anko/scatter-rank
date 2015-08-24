@@ -1,8 +1,8 @@
-# scatter-rank
+# scatter-rank [![](https://img.shields.io/travis/anko/scatter-rank.svg?style=flat-square)][1]
 
-This is a very similar (identical?) matcher algorighm as behind [TextMate][1]'s
-<kbd>Cmd</kbd>+<kbd>T</kbd> feature, [the `command-t` vim plugin][2] and [Emacs
-Icicles `scatter-match` completion][3], as a Node.js library.
+This is a very similar (identical?) matcher algorighm as behind [TextMate][2]'s
+<kbd>Cmd</kbd>+<kbd>T</kbd> feature, [the `command-t` vim plugin][3] and [Emacs
+Icicles `scatter-match` completion][4], as a Node.js library.
 
 Exports a function that looks for a subsequence of a given sequence of
 characters in an input string, ignoring other characters, and outputs what
@@ -40,28 +40,29 @@ Alternatively, pass the *string to search in* as second parameter:
 
 ## Related libraries
 
--   [*fast-levenshtein*][4] is better for ranking mispellings and
+-   [*fast-levenshtein*][5] is better for ranking mispellings and
     approximations, but too rigid for abbreviations to match well.
 
--   [*string_score*][5] is like a fuzzy, more complex version of this.  It's
+-   [*string_score*][6] is like a fuzzy, more complex version of this.  It's
     better for natural language use-cases where you don't necessarily know much
     about the string you're looking for.  Modifies the `String` prototype.
 
--   [*fuzzy*][6] is more complex, can't produce a rank value, and to be honest
+-   [*fuzzy*][7] is more complex, can't produce a rank value, and to be honest
     I don't understand what it does.
 
--   [*fuzzy-filter*][7] can filter strings for matches and do fancy
+-   [*fuzzy-filter*][8] can filter strings for matches and do fancy
     highlighting stuff, but also can't produce a similarity value.
 
 ## License
 
-[ISC][8].
+[ISC][9].
 
-[1]: https://macromates.com/
-[2]: https://github.com/wincent/Command-T
-[3]: http://www.emacswiki.org/emacs?action=browse;oldid=Icicles_-_Fuzzy_Completion;id=Icicles_-_Completion_Methods_and_Styles#toc7
-[4]: https://github.com/hiddentao/fast-levenshtein
-[5]: https://github.com/joshaven/string_score
-[6]: https://github.com/mattyork/fuzzy
-[7]: https://github.com/stratuseditor/fuzzy-filter
-[8]: http://opensource.org/licenses/ISC
+[1]: https://travis-ci.org/anko/scatter-rank
+[2]: https://macromates.com/
+[3]: https://github.com/wincent/Command-T
+[4]: http://www.emacswiki.org/emacs?action=browse;oldid=Icicles_-_Fuzzy_Completion;id=Icicles_-_Completion_Methods_and_Styles#toc7
+[5]: https://github.com/hiddentao/fast-levenshtein
+[6]: https://github.com/joshaven/string_score
+[7]: https://github.com/mattyork/fuzzy
+[8]: https://github.com/stratuseditor/fuzzy-filter
+[9]: http://opensource.org/licenses/ISC
