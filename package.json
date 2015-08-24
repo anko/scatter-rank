@@ -10,7 +10,13 @@
   "files": [
     "index.js"
   ],
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anko/scatter-rank.git"
+  },
+  "homepage": "https://github.com/anko/scatter-rank",
+  "bugs": "https://github.com/anko/scatter-rank/issues",
+  "keywords": ["fuzzy", "string", "match", "approximate", "abbreviation", "command-t", "scatter"],
   "author": "Anko <an@cyan.io> (http://an.cyan.io)",
   "license": "ISC",
   "devDependencies": {
